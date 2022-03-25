@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
+        <meta
+                name="description"
+                content="Web site created using create-react-app"
+        />
+        <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"></script>
+        <script
+                src="https://api.systempay.fr/static/js/krypton-client/V4.0/stable/kr-payment-form.min.js"
+                kr-public-key="92244041:publickey_pVl637xf8h3YFiYvKSioSpyYwPoAhYDoi84apizsEgdKE"
+                kr-post-url-success="https://ifenetres.fr/api/pay/result">
+        </script>
+
+        <!-- theme and plugins. should be loaded after the javascript library -->
+        <!-- not mandatory but helps to have a nice payment form out of the box -->
+        <link rel="stylesheet"
+              href="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic-reset.css">
+        <script
+                src="https://api.systempay.fr/static/js/krypton-client/V4.0/ext/classic.js">
+        </script>
+
+    </head>
+
+    <body>
+        <div class="container">
+        </div>
+    </body>
+    <style>
+        .container{
+            margin: 40px auto auto;
+            width: fit-content;
+        }
+    </style>
+    <script>
+        $(function () {
+            document.cookie = 'flavor=choco; SameSite=None; Secure';
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const kform = urlParams.get('kform');
+            $(".container").html('  <div class="kr-embedded"\n' +
+                '             kr-form-token="'+kform+'">\n' +
+                '            <div class="kr-pan"></div>\n' +
+                '            <div class="kr-expiry"></div>\n' +
+                '            <div class="kr-security-code"></div>\n' +
+                '            <button class="kr-payment-button"></button>\n' +
+                '            <div class="kr-form-error"></div>\n' +
+                '        </div>');
+            // $(".kr-embedded").attr("kr-form-token",kform);
+        });
+    </script>
+
+
+</html>
